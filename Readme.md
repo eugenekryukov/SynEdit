@@ -1,3 +1,7 @@
+# SynEdit for CrossVcl
+This fork has modification which allow to use SynEdit together with CrossVcl (http://www.crossvcl.com) to build VCL application for macOS and Linux using Delphi Tokyo.
+![Advanced](Screenshots/synedit.png)
+
 SynEdit
 =======
 
