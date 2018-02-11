@@ -361,7 +361,7 @@ begin
     Result := tkSystemDefined
 
   // Check for names of class and functions - not optimal
-  else if ( (WideCompareStr(Trim(Copy(FLine, 0, Length(FLine) - Length(FToIdent))), 'def')=0)   or (WideCompareStr(Trim(Copy(FLine, 0, Length(FLine) - Length(FToIdent))), 'class')=0) ) then
+  else if ( (CompareStr(Trim(Copy(FLine, 0, Length(FLine) - Length(FToIdent))), 'def')=0)   or (CompareStr(Trim(Copy(FLine, 0, Length(FLine) - Length(FToIdent))), 'class')=0) ) then
        Result := tkSystemDefined
 
   // Else, hey, it is an ordinary run-of-the-mill identifier!

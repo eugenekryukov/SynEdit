@@ -2906,7 +2906,9 @@ begin
     if PaintLock = 0 then
       DoOnPaintTransient(ttAfter);
   finally
+    {$IFDEF MSWINDOWS}
     UpdateCaret;
+    {$ENDIF}
   end;
 end;
 

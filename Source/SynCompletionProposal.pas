@@ -1,4 +1,4 @@
-{-------------------------------------------------------------------------------
+﻿{-------------------------------------------------------------------------------
 The contents of this file are subject to the Mozilla Public License
 Version 1.1 (the "License"); you may not use this file except in compliance
 with the License. You may obtain a copy of the License at
@@ -1907,9 +1907,9 @@ var
       CompareString := Copy(CompareString, 1, Length(Value));
 
       if FCase then
-        Result := WideCompareStr(CompareString, Value) = 0
+        Result := CompareStr(CompareString, Value) = 0
       else
-        Result := WideCompareText(CompareString, Value) = 0;
+        Result := CompareText(CompareString, Value) = 0;
     end;
   end;
 

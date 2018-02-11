@@ -22,7 +22,6 @@ object Form1: TForm1
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitWidth = 548
     object DBNavigator1: TDBNavigator
       Left = 4
       Top = 4
@@ -66,8 +65,6 @@ object Form1: TForm1
     Gutter.Font.Height = -11
     Gutter.Font.Name = 'Courier New'
     Gutter.Font.Style = []
-    ExplicitWidth = 548
-    ExplicitHeight = 327
     RemovedKeystrokes = <
       item
         Command = ecDeleteLastChar
@@ -440,7 +437,7 @@ object Form1: TForm1
     Options.AutoDetectEnabled = False
     Options.AutoDetectLineLimit = 0
     Options.Visible = False
-    Left = 112
+    Left = 164
     Top = 152
   end
 end

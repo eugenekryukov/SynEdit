@@ -53,9 +53,6 @@ interface
 {$I SynEdit.Inc}
 
 uses
-{$IFDEF UNICODE}
-  WideStrUtils,
-{$ENDIF}
 {$IFDEF SYN_CLX}
   QGraphics,
   QSynEditTypes,
@@ -958,7 +955,7 @@ begin
       end
       else
         for i := Low(EscapeAmps) To High(EscapeAmps) do
-          if (WStrLComp((FLine + Run), EscapeAmps[i], WStrLen(EscapeAmps[i])) = 0) then
+          if (StrLComp((FLine + Run), EscapeAmps[i], StrLen(EscapeAmps[i])) = 0) then
           begin
             FAndCode := i;
             FRange := rsAmpersand;
@@ -1002,7 +999,7 @@ begin
   Low(EscapeAmps)..High(EscapeAmps):
     begin
       FTokenID := tkAmpersand;
-      Inc(Run, WStrLen(EscapeAmps[FAndCode]));
+      Inc(Run, StrLen(EscapeAmps[FAndCode]));
     end;
     else begin
       if (FLine[Run + 1] = '#') then
