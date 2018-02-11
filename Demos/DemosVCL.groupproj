@@ -1,0 +1,252 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{2CA8842E-2BCA-427D-BC68-CDB32A9B5CF5}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="AutoCompleteDemo\AutoCompleteDemo1.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="CompletionProposalDemo\CompletionProposalDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="CompletionProposalDemo\ParamCompletionDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="D4Demo\D4demo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="DBSynEditDemo\DBEditDemo1.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="EditAppDemos\EditAppSDI.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="EditAppDemos\EditAppWorkbook.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ExportDemo\ExportDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="HighlighterDemo\HighlighterDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="MultiSynDemo\MultiHighlight.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="OnPaintTransientDemo\PaintTransientDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="pas2html\pas2html.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="PrintDemo\PrintDemo1.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="PrintDemoNew\TestPP.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="ScanTokensDemo\ScanTokensDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="SearchReplaceDemo\SearchReplaceDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="SimpleIDEDemo\SimpleIDEDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="SynAutoCorrectDemo\SynAutoCorrectDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="URLDemo\URLDemoWindows.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="AutoCompleteDemo1">
+        <MSBuild Projects="AutoCompleteDemo\AutoCompleteDemo1.dproj"/>
+    </Target>
+    <Target Name="AutoCompleteDemo1:Clean">
+        <MSBuild Projects="AutoCompleteDemo\AutoCompleteDemo1.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AutoCompleteDemo1:Make">
+        <MSBuild Projects="AutoCompleteDemo\AutoCompleteDemo1.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="CompletionProposalDemo">
+        <MSBuild Projects="CompletionProposalDemo\CompletionProposalDemo.dproj"/>
+    </Target>
+    <Target Name="CompletionProposalDemo:Clean">
+        <MSBuild Projects="CompletionProposalDemo\CompletionProposalDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CompletionProposalDemo:Make">
+        <MSBuild Projects="CompletionProposalDemo\CompletionProposalDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ParamCompletionDemo">
+        <MSBuild Projects="CompletionProposalDemo\ParamCompletionDemo.dproj"/>
+    </Target>
+    <Target Name="ParamCompletionDemo:Clean">
+        <MSBuild Projects="CompletionProposalDemo\ParamCompletionDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ParamCompletionDemo:Make">
+        <MSBuild Projects="CompletionProposalDemo\ParamCompletionDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="D4demo">
+        <MSBuild Projects="D4Demo\D4demo.dproj"/>
+    </Target>
+    <Target Name="D4demo:Clean">
+        <MSBuild Projects="D4Demo\D4demo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="D4demo:Make">
+        <MSBuild Projects="D4Demo\D4demo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DBEditDemo1">
+        <MSBuild Projects="DBSynEditDemo\DBEditDemo1.dproj"/>
+    </Target>
+    <Target Name="DBEditDemo1:Clean">
+        <MSBuild Projects="DBSynEditDemo\DBEditDemo1.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DBEditDemo1:Make">
+        <MSBuild Projects="DBSynEditDemo\DBEditDemo1.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="EditAppSDI">
+        <MSBuild Projects="EditAppDemos\EditAppSDI.dproj"/>
+    </Target>
+    <Target Name="EditAppSDI:Clean">
+        <MSBuild Projects="EditAppDemos\EditAppSDI.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="EditAppSDI:Make">
+        <MSBuild Projects="EditAppDemos\EditAppSDI.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="EditAppWorkbook">
+        <MSBuild Projects="EditAppDemos\EditAppWorkbook.dproj"/>
+    </Target>
+    <Target Name="EditAppWorkbook:Clean">
+        <MSBuild Projects="EditAppDemos\EditAppWorkbook.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="EditAppWorkbook:Make">
+        <MSBuild Projects="EditAppDemos\EditAppWorkbook.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ExportDemo">
+        <MSBuild Projects="ExportDemo\ExportDemo.dproj"/>
+    </Target>
+    <Target Name="ExportDemo:Clean">
+        <MSBuild Projects="ExportDemo\ExportDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ExportDemo:Make">
+        <MSBuild Projects="ExportDemo\ExportDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="HighlighterDemo">
+        <MSBuild Projects="HighlighterDemo\HighlighterDemo.dproj"/>
+    </Target>
+    <Target Name="HighlighterDemo:Clean">
+        <MSBuild Projects="HighlighterDemo\HighlighterDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="HighlighterDemo:Make">
+        <MSBuild Projects="HighlighterDemo\HighlighterDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MultiHighlight">
+        <MSBuild Projects="MultiSynDemo\MultiHighlight.dproj"/>
+    </Target>
+    <Target Name="MultiHighlight:Clean">
+        <MSBuild Projects="MultiSynDemo\MultiHighlight.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MultiHighlight:Make">
+        <MSBuild Projects="MultiSynDemo\MultiHighlight.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PaintTransientDemo">
+        <MSBuild Projects="OnPaintTransientDemo\PaintTransientDemo.dproj"/>
+    </Target>
+    <Target Name="PaintTransientDemo:Clean">
+        <MSBuild Projects="OnPaintTransientDemo\PaintTransientDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PaintTransientDemo:Make">
+        <MSBuild Projects="OnPaintTransientDemo\PaintTransientDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pas2html">
+        <MSBuild Projects="pas2html\pas2html.dproj"/>
+    </Target>
+    <Target Name="pas2html:Clean">
+        <MSBuild Projects="pas2html\pas2html.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pas2html:Make">
+        <MSBuild Projects="pas2html\pas2html.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PrintDemo1">
+        <MSBuild Projects="PrintDemo\PrintDemo1.dproj"/>
+    </Target>
+    <Target Name="PrintDemo1:Clean">
+        <MSBuild Projects="PrintDemo\PrintDemo1.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PrintDemo1:Make">
+        <MSBuild Projects="PrintDemo\PrintDemo1.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TestPP">
+        <MSBuild Projects="PrintDemoNew\TestPP.dproj"/>
+    </Target>
+    <Target Name="TestPP:Clean">
+        <MSBuild Projects="PrintDemoNew\TestPP.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TestPP:Make">
+        <MSBuild Projects="PrintDemoNew\TestPP.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ScanTokensDemo">
+        <MSBuild Projects="ScanTokensDemo\ScanTokensDemo.dproj"/>
+    </Target>
+    <Target Name="ScanTokensDemo:Clean">
+        <MSBuild Projects="ScanTokensDemo\ScanTokensDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ScanTokensDemo:Make">
+        <MSBuild Projects="ScanTokensDemo\ScanTokensDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="SearchReplaceDemo">
+        <MSBuild Projects="SearchReplaceDemo\SearchReplaceDemo.dproj"/>
+    </Target>
+    <Target Name="SearchReplaceDemo:Clean">
+        <MSBuild Projects="SearchReplaceDemo\SearchReplaceDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SearchReplaceDemo:Make">
+        <MSBuild Projects="SearchReplaceDemo\SearchReplaceDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="SimpleIDEDemo">
+        <MSBuild Projects="SimpleIDEDemo\SimpleIDEDemo.dproj"/>
+    </Target>
+    <Target Name="SimpleIDEDemo:Clean">
+        <MSBuild Projects="SimpleIDEDemo\SimpleIDEDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SimpleIDEDemo:Make">
+        <MSBuild Projects="SimpleIDEDemo\SimpleIDEDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="SynAutoCorrectDemo">
+        <MSBuild Projects="SynAutoCorrectDemo\SynAutoCorrectDemo.dproj"/>
+    </Target>
+    <Target Name="SynAutoCorrectDemo:Clean">
+        <MSBuild Projects="SynAutoCorrectDemo\SynAutoCorrectDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SynAutoCorrectDemo:Make">
+        <MSBuild Projects="SynAutoCorrectDemo\SynAutoCorrectDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="URLDemoWindows">
+        <MSBuild Projects="URLDemo\URLDemoWindows.dproj"/>
+    </Target>
+    <Target Name="URLDemoWindows:Clean">
+        <MSBuild Projects="URLDemo\URLDemoWindows.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="URLDemoWindows:Make">
+        <MSBuild Projects="URLDemo\URLDemoWindows.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="AutoCompleteDemo1;CompletionProposalDemo;ParamCompletionDemo;D4demo;DBEditDemo1;EditAppSDI;EditAppWorkbook;ExportDemo;HighlighterDemo;MultiHighlight;PaintTransientDemo;pas2html;PrintDemo1;TestPP;ScanTokensDemo;SearchReplaceDemo;SimpleIDEDemo;SynAutoCorrectDemo;URLDemoWindows"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="AutoCompleteDemo1:Clean;CompletionProposalDemo:Clean;ParamCompletionDemo:Clean;D4demo:Clean;DBEditDemo1:Clean;EditAppSDI:Clean;EditAppWorkbook:Clean;ExportDemo:Clean;HighlighterDemo:Clean;MultiHighlight:Clean;PaintTransientDemo:Clean;pas2html:Clean;PrintDemo1:Clean;TestPP:Clean;ScanTokensDemo:Clean;SearchReplaceDemo:Clean;SimpleIDEDemo:Clean;SynAutoCorrectDemo:Clean;URLDemoWindows:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="AutoCompleteDemo1:Make;CompletionProposalDemo:Make;ParamCompletionDemo:Make;D4demo:Make;DBEditDemo1:Make;EditAppSDI:Make;EditAppWorkbook:Make;ExportDemo:Make;HighlighterDemo:Make;MultiHighlight:Make;PaintTransientDemo:Make;pas2html:Make;PrintDemo1:Make;TestPP:Make;ScanTokensDemo:Make;SearchReplaceDemo:Make;SimpleIDEDemo:Make;SynAutoCorrectDemo:Make;URLDemoWindows:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

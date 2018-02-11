@@ -1,9 +1,9 @@
 object Form1: TForm1
   Left = 66
   Top = 78
-  Width = 584
-  Height = 362
   Caption = 'Autocompletion demo'
+  ClientHeight = 303
+  ClientWidth = 568
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,8 +20,8 @@ object Form1: TForm1
   object SynEdit1: TSynEdit
     Left = 0
     Top = 0
-    Width = 576
-    Height = 308
+    Width = 568
+    Height = 303
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -29,6 +29,14 @@ object Form1: TForm1
     Font.Name = 'Courier New'
     Font.Style = []
     TabOrder = 0
+    CodeFolding.GutterShapeSize = 11
+    CodeFolding.CollapsedLineColor = clGrayText
+    CodeFolding.FolderBarLinesColor = clGrayText
+    CodeFolding.IndentGuidesColor = clGray
+    CodeFolding.IndentGuides = True
+    CodeFolding.ShowCollapsedLine = False
+    CodeFolding.ShowHintMark = True
+    UseCodeFolding = False
     Gutter.Font.Charset = DEFAULT_CHARSET
     Gutter.Font.Color = clWindowText
     Gutter.Font.Height = -11
@@ -41,6 +49,9 @@ object Form1: TForm1
       'arrayc'
       'classf'
       'pro')
+    FontSmoothing = fsmNone
+    ExplicitWidth = 576
+    ExplicitHeight = 308
     RemovedKeystrokes = <
       item
         Command = ecLineBreak
@@ -53,6 +64,9 @@ object Form1: TForm1
     AddedKeystrokes = <>
   end
   object SynPasSyn1: TSynPasSyn
+    Options.AutoDetectEnabled = False
+    Options.AutoDetectLineLimit = 0
+    Options.Visible = False
     Left = 276
     Top = 104
   end

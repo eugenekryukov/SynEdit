@@ -11,6 +11,8 @@ inherited SDIMainForm: TSDIMainForm
   inherited StatusBar: TStatusBar
     Top = 463
     Width = 730
+    ExplicitTop = 463
+    ExplicitWidth = 730
   end
   inherited mnuMain: TMainMenu
     inherited mFile: TMenuItem

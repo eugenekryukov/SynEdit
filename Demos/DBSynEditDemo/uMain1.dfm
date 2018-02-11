@@ -1,9 +1,9 @@
 object Form1: TForm1
   Left = 140
   Top = 102
-  Width = 556
-  Height = 394
   Caption = 'Form1'
+  ClientHeight = 355
+  ClientWidth = 540
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,11 +17,12 @@ object Form1: TForm1
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 548
+    Width = 540
     Height = 33
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitWidth = 548
     object DBNavigator1: TDBNavigator
       Left = 4
       Top = 4
@@ -48,8 +49,8 @@ object Form1: TForm1
   object DBSynEdit1: TDBSynEdit
     Left = 0
     Top = 33
-    Width = 548
-    Height = 327
+    Width = 540
+    Height = 322
     DataSource = DataSource1
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
@@ -65,6 +66,8 @@ object Form1: TForm1
     Gutter.Font.Height = -11
     Gutter.Font.Name = 'Courier New'
     Gutter.Font.Style = []
+    ExplicitWidth = 548
+    ExplicitHeight = 327
     RemovedKeystrokes = <
       item
         Command = ecDeleteLastChar
@@ -421,26 +424,22 @@ object Form1: TForm1
       end>
   end
   object DataSource1: TDataSource
-    DataSet = Table1
     OnDataChange = DataSource1DataChange
     Left = 72
     Top = 92
   end
-  object Table1: TTable
-    AfterOpen = UpdateHighlighterNeeded
-    AfterEdit = UpdateHighlighterNeeded
-    AfterPost = UpdateHighlighterNeeded
-    AfterDelete = UpdateHighlighterNeeded
-    OnUpdateRecord = Table1UpdateRecord
-    Left = 112
-    Top = 92
-  end
   object SynPasSyn1: TSynPasSyn
+    Options.AutoDetectEnabled = False
+    Options.AutoDetectLineLimit = 0
+    Options.Visible = False
     Left = 72
     Top = 152
   end
   object SynPerlSyn1: TSynPerlSyn
     DefaultFilter = 'Perl files (*.pl,*.pm,*.cgi)|*.pl;*.pm;*.cgi'
+    Options.AutoDetectEnabled = False
+    Options.AutoDetectLineLimit = 0
+    Options.Visible = False
     Left = 112
     Top = 152
   end

@@ -5,7 +5,7 @@ object EditorForm: TEditorForm
   Caption = 'Editor'
   ClientHeight = 287
   ClientWidth = 454
-  Color = clBtnFace
+  Color = clWindow
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -102,6 +102,6 @@ object EditorForm: TEditorForm
   end
   object SynEditSearch1: TSynEditSearch
     Left = 92
-    Top = 64
+    Top = 86
   end
 end

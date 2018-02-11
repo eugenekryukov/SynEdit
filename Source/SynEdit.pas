@@ -7137,6 +7137,9 @@ end;
 
 procedure TCustomSynEdit.WMEraseBkgnd(var Msg: TMessage);
 begin
+  {$IFNDEF WINDOWS}
+  FillRect(TWMPaint(Msg).DC, Rect(0, 0, Width, Height), Brush.Handle);
+  {$ENDIF}
   Msg.Result := 1;
 end;
 

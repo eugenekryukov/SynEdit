@@ -42,14 +42,13 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, Mask, DBCtrls, SynEdit, SynDBEdit, Db, DBTables, ExtCtrls,
-  SynEditHighlighter, SynHighlighterPas, SynHighlighterPerl;
+  StdCtrls, Mask, DBCtrls, SynEdit, SynDBEdit, Db, ExtCtrls,
+  SynEditHighlighter, SynHighlighterPas, SynHighlighterPerl, SynEditCodeFolding;
 
 type
   TForm1 = class(TForm)
     Panel1: TPanel;
     DataSource1: TDataSource;
-    Table1: TTable;
     DBSynEdit1: TDBSynEdit;
     DBNavigator1: TDBNavigator;
     DBEdit1: TDBEdit;
