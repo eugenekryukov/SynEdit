@@ -300,8 +300,8 @@ function EditorCommandToDescrString(Cmd: TSynEditorCommand): string;
 function EditorCommandToCodeString(Cmd: TSynEditorCommand): string;
 procedure GetEditorCommandValues(Proc: TGetStrProc);
 procedure GetEditorCommandExtended(Proc: TGetStrProc);
-function IdentToEditorCommand(const Ident: string; var Cmd: longint): Boolean;
-function EditorCommandToIdent(Cmd: longint; var Ident: string): Boolean;
+function IdentToEditorCommand(const Ident: string; var Cmd: Integer): Boolean;
+function EditorCommandToIdent(Cmd: Integer; var Ident: string): Boolean;
 function ConvertCodeStringToExtended(AString: string): string;
 function ConvertExtendedToCodeString(AString: string): string;
 function ConvertExtendedToCommand(AString: string): TSynEditorCommand;
@@ -495,7 +495,7 @@ begin
 {$ENDIF}
 end;
 
-function EditorCommandToIdent(Cmd: longint; var Ident: string): Boolean;
+function EditorCommandToIdent(Cmd: Integer; var Ident: string): Boolean;
 {$IFDEF SYN_COMPILER_2}
 var
   I: Integer;

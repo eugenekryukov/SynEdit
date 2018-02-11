@@ -316,6 +316,11 @@ begin
     TextOutFlags := TextOutFlags or ETO_OPAQUE;
   if tooClipped in Options then
     TextOutFlags := TextOutFlags or ETO_CLIPPED;
+  {$IFNDEF MSWINDOWS}
+  {$IFDEF SYN_CROSSVCL}
+  TextOutFlags := TextOutFlags or $3000; // Use integer advances
+  {$ENDIF}
+  {$ENDIF}
 
 {$IFDEF SYN_UNISCRIBE}
   if Usp10IsInstalled then
@@ -930,7 +935,7 @@ procedure TSynTextDrawer.ExtTextOut(X, Y: Integer; Options: TTextOutOptions;
     LastChar: Cardinal;
     RealCharWidth, CharWidth: Integer;
     CharInfo: TABC;
-    tm: TTextMetricA;
+    tm: TTextMetric;
   begin
     if Length <= 0 then Exit;
     
@@ -947,7 +952,7 @@ procedure TSynTextDrawer.ExtTextOut(X, Y: Integer; Options: TTextOutOptions;
       end
       else if LastChar < Ord(High(AnsiChar)) then
       begin
-        GetTextMetricsA(FDC, tm);
+        GetTextMetrics(FDC, tm);
         RealCharWidth := tm.tmAveCharWidth + tm.tmOverhang;
       end;
     end
@@ -961,7 +966,7 @@ procedure TSynTextDrawer.ExtTextOut(X, Y: Integer; Options: TTextOutOptions;
       end
       else if LastChar < Ord(High(AnsiChar)) then
       begin
-        GetTextMetricsA(FDC, tm);
+        GetTextMetrics(FDC, tm);
         RealCharWidth := tm.tmAveCharWidth + tm.tmOverhang;
       end;
     end;

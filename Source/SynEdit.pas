@@ -116,7 +116,9 @@ uses
   D2D1,
 {$ENDIF}
 {$IFDEF UNICODE}
+  {$IFNDEF SYN_CROSSVCL}
   WideStrUtils,
+  {$ENDIF}
 {$ENDIF}
   Math,
   SysUtils,
@@ -1262,7 +1264,9 @@ uses
   Consts,
 {$ENDIF}
 {$IFDEF SYN_COMPILER_18_UP}
+  {$IFNDEF NEXTGEN}
   AnsiStrings,
+  {$ENDIF}
 {$ENDIF}
 {$IFDEF SYN_DirectWrite}
   CommCtrl,
@@ -1932,7 +1936,7 @@ function TCustomSynEdit.GetSelText: UnicodeString;
     else begin
       SetLength(Result, DstLen);
       P := PWideChar(Result);
-      WStrCopy(P, PWideChar(Copy(S, Index, Count)));
+      StrCopy(P, PWideChar(Copy(S, Index, Count)));
       Inc(P, Length(S));
       for i := 0 to DstLen - Srclen - 1 do
         P[i] := #32;
@@ -2870,7 +2874,9 @@ begin
     1, DisplayLineCount);
 
   // Now paint everything while the caret is hidden.
+  {$IFDEF MSWINDOWS}
   HideCaret;
+  {$ENDIF}
   try
     // First paint the gutter area if it was (partly) invalidated.
     if (rcClip.Left < FGutterWidth) then
@@ -4001,7 +4007,7 @@ var
     LastChar: Cardinal;
     NormalCharWidth, RealCharWidth: Integer;
     CharInfo: TABC;
-    tm: TTextMetricA;
+    tm: TTextMetric;
   begin
     LastChar := Ord(TokenAccu.s[TokenAccu.Len]);
     NormalCharWidth := FTextDrawer.TextWidth(WideChar(LastChar));
@@ -4016,7 +4022,7 @@ var
       end
       else if LastChar < Ord(High(AnsiChar)) then
       begin
-        GetTextMetricsA(Canvas.Handle, tm);
+        GetTextMetrics(Canvas.Handle, tm);
         RealCharWidth := tm.tmAveCharWidth + tm.tmOverhang;
       end;
     end
@@ -4030,7 +4036,7 @@ var
       end
       else if LastChar < Ord(High(AnsiChar)) then
       begin
-        GetTextMetricsA(Canvas.Handle, tm);
+        GetTextMetrics(Canvas.Handle, tm);
         RealCharWidth := tm.tmAveCharWidth + tm.tmOverhang;
       end;
     end;
@@ -7148,13 +7154,15 @@ procedure TCustomSynEdit.WMGetText(var Msg: TWMGetText);
 begin
   if HandleAllocated and IsWindowUnicode(Handle) then
   begin
-    WStrLCopy(PWideChar(Msg.Text), PWideChar(Text), Msg.TextMax - 1);
-    Msg.Result := WStrLen(PWideChar(Msg.Text));
+    StrLCopy(PWideChar(Msg.Text), PWideChar(Text), Msg.TextMax - 1);
+    Msg.Result := StrLen(PWideChar(Msg.Text));
   end
   else
   begin
-   {$IFDEF SYN_COMPILER_18_UP}AnsiStrings.{$ENDIF}StrLCopy(PAnsiChar(Msg.Text), PAnsiChar(AnsiString(Text)), Msg.TextMax - 1);
+    {$IFNDEF NEXTGEN}
+    {$IFDEF SYN_COMPILER_18_UP}AnsiStrings.{$ENDIF}StrLCopy(PAnsiChar(Msg.Text), PAnsiChar(AnsiString(Text)), Msg.TextMax - 1);
     Msg.Result := {$IFDEF SYN_COMPILER_18_UP}AnsiStrings.{$ENDIF}StrLen(PAnsiChar(Msg.Text));
+    {$ENDIF}
   end;
 end;
 
@@ -10150,7 +10158,7 @@ begin
       ecImeStr:
         if not ReadOnly then
         begin
-          SetString(S, PWideChar(Data), WStrLen(Data));
+          SetString(S, PWideChar(Data), StrLen(PChar(Data)));
           if SelAvail then
           begin
             BeginUndoBlock;
@@ -12094,23 +12102,23 @@ begin
     begin
       InsertStrLen := (FTabWidth + 2) * (e - BB.Line) + FTabWidth + 1;
       //               chars per line * lines-1    + last line + null char
-      StrToInsert := WStrAlloc(InsertStrLen);
+      StrToInsert := StrAlloc(InsertStrLen);
       Run := StrToInsert;
       Spaces := UnicodeStringOfChar(#32, FTabWidth);
     end
     else begin
       InsertStrLen := 3 * (e - BB.Line) + 2;
       //         #9#13#10 * lines-1 + (last line's #9 + null char)
-      StrToInsert := WStrAlloc(InsertStrLen);
+      StrToInsert := StrAlloc(InsertStrLen);
       Run := StrToInsert;
       Spaces := #9;
     end;
     for i := BB.Line to e-1 do
     begin
-      WStrCopy(Run, PWideChar(Spaces + #13#10));
+      StrCopy(Run, PWideChar(Spaces + #13#10));
       Inc(Run, Length(spaces) + 2);
     end;
-    WStrCopy(Run, PWideChar(Spaces));
+    StrCopy(Run, PWideChar(Spaces));
 
     FUndoList.BeginBlock;
     try
@@ -12135,7 +12143,7 @@ begin
   finally
     if BE.Char > 1 then
       Inc(BE.Char, Length(Spaces));
-    WStrDispose(StrToInsert);
+    StrDispose(StrToInsert);
     SetCaretAndSelection(OrgCaretPos,
       BufferCoord(BB.Char + Length(Spaces), BB.Line), BE);
     ActiveSelectionMode := OrgSelectionMode;
@@ -12201,7 +12209,7 @@ begin
     // build string to delete
     StrToDeleteLen := (FTabWidth + 2) * (e - BB.Line) + FTabWidth + 1;
     //                chars per line * lines-1    + last line + null char
-    StrToDelete := WStrAlloc(StrToDeleteLen);
+    StrToDelete := StrAlloc(StrToDeleteLen);
     StrToDelete[0] := #0;
     SomethingToDelete := False;
     for i := BB.Line to e-1 do
@@ -12214,8 +12222,8 @@ begin
        //Instead of doing a UnicodeStringOfChar, we need to get *exactly* what was
        //being deleted incase there is a TabChar
        TmpDelLen := GetDelLen;
-       WStrCat(StrToDelete, PWideChar(Copy(Line, 1, TmpDelLen)));
-       WStrCat(StrToDelete, PWideChar(UnicodeString(#13#10)));
+       StrCat(StrToDelete, PWideChar(Copy(Line, 1, TmpDelLen)));
+       StrCat(StrToDelete, PWideChar(UnicodeString(#13#10)));
        if (FCaretY = i) and (x <> 1) then
          x := x - TmpDelLen;
     end;
@@ -12223,7 +12231,7 @@ begin
     if FActiveSelectionMode = smColumn then
       Inc(Line, MinIntValue([BB.Char - 1, BE.Char - 1, Length(Lines[e - 1])]));
     TmpDelLen := GetDelLen;
-    WStrCat(StrToDelete, PWideChar(Copy(Line, 1, TmpDelLen)));
+    StrCat(StrToDelete, PWideChar(Copy(Line, 1, TmpDelLen)));
     if (FCaretY = e) and (x <> 1) then
       x := x - TmpDelLen;
 
@@ -12279,9 +12287,9 @@ begin
     end;
     ActiveSelectionMode := OrgSelectionMode;
     if FullStrToDelete <> nil then
-      WStrDispose(FullStrToDelete)
+      StrDispose(FullStrToDelete)
     else
-      WStrDispose(StrToDelete);
+      StrDispose(StrToDelete);
   end;
 end;
 

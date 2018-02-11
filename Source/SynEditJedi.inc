@@ -444,7 +444,7 @@
 
 {$IFDEF BORLAND}
   {$IFDEF LINUX}
-    {$DEFINE KYLIX}
+    {.$DEFINE KYLIX}
   {$ENDIF LINUX}
   {$IFNDEF CLR}
     {$DEFINE CPU386}  // For Borland compilers select the x86 compat assembler by default

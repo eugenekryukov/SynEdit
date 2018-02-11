@@ -1578,6 +1578,8 @@ begin
 end;
 {$ENDIF}
 
+{$IFNDEF UNICODE}
+
 function WStrLen(const Str: PWideChar): Cardinal;
 asm
         MOV     EDX,EDI
@@ -1720,6 +1722,8 @@ begin
     FreeMem(Str, Cardinal(Pointer(Str)^));
   end;
 end;
+
+{$ENDIF}
 
 {$IFNDEF SYN_COMPILER_6_UP}
 {$IFDEF SYN_WIN32}
@@ -2145,7 +2149,7 @@ begin
   P := PWideChar(Delimiters);
   while Result > 0 do
   begin
-    if (S[Result] <> #0) and (WStrScan(P, S[Result]) <> nil) then
+    if (S[Result] <> #0) and (StrScan(P, S[Result]) <> nil) then
       Exit;
     Dec(Result);
   end;
@@ -2302,12 +2306,12 @@ var
   AddCount: Integer;
 begin
   AddCount := 0;
-  P := WStrScan(PWideChar(S), Quote);
+  P := StrScan(PWideChar(S), Quote);
   while (P <> nil) do
   begin
     Inc(P);
     Inc(AddCount);
-    P := WStrScan(P, Quote);
+    P := StrScan(P, Quote);
   end;
 
   if AddCount = 0 then
@@ -2319,7 +2323,7 @@ begin
     Dest^ := Quote;
     Inc(Dest);
     Src := PWideChar(S);
-    P := WStrScan(Src, Quote);
+    P := StrScan(Src, Quote);
     repeat
       Inc(P);
       Move(Src^, Dest^, 2 * (P - Src));
@@ -2327,9 +2331,9 @@ begin
       Dest^ := Quote;
       Inc(Dest);
       Src := P;
-      P := WStrScan(Src, Quote);
+      P := StrScan(Src, Quote);
     until P = nil;
-    P := WStrEnd(Src);
+    P := StrEnd(Src);
     Move(Src^, Dest^, 2 * (P - Src));
     Inc(Dest, P - Src);
     Dest^ := Quote;
@@ -2349,7 +2353,7 @@ begin
   Inc(Src);
   DropCount := 1;
   P := Src;
-  Src := WStrScan(Src, Quote);
+  Src := StrScan(Src, Quote);
 
   while Src <> nil do   // count adjacent pairs of quote chars
   begin
@@ -2358,11 +2362,11 @@ begin
       Break;
     Inc(Src);
     Inc(DropCount);
-    Src := WStrScan(Src, Quote);
+    Src := StrScan(Src, Quote);
   end;
 
   if Src = nil then
-    Src := WStrEnd(P);
+    Src := StrEnd(P);
   if (Src - P) <= 1 then
     Exit;
 
@@ -2372,7 +2376,7 @@ begin
   begin
     SetLength(Result, Src - P - DropCount);
     Dest := PWideChar(Result);
-    Src := WStrScan(P, Quote);
+    Src := StrScan(P, Quote);
     while Src <> nil do
     begin
       Inc(Src);
@@ -2382,10 +2386,10 @@ begin
       Inc(Dest, Src - P);
       Inc(Src);
       P := Src;
-      Src := WStrScan(Src, Quote);
+      Src := StrScan(Src, Quote);
     end;
     if Src = nil then
-      Src := WStrEnd(P);
+      Src := StrEnd(P);
     Move(P^, Dest^, 2 * (Src - P - 1));
   end;
 end;
@@ -2436,8 +2440,16 @@ begin
 end;
 
 {$IFDEF SYN_WIN32}
+
+{$IFDEF MSWINDOWS}
 function TranslateCharsetInfoEx(lpSrc: PDWORD; var lpCs: TCharsetInfo; dwFlags: DWORD): BOOL; stdcall;
   external 'gdi32.dll' name 'TranslateCharsetInfo';
+{$ELSE}
+function TranslateCharsetInfoEx(lpSrc: PDWORD; var lpCs: TCharsetInfo; dwFlags: DWORD): BOOL; stdcall;
+begin
+  raise Exception.Create('TranslateCharsetInfoEx');
+end;
+{$ENDIF}
 
 function CharSetFromLocale(Language: LCID): TFontCharSet;
 var
@@ -2503,7 +2515,7 @@ const
   SSAnalyseFlags = SSA_GLYPHS or SSA_FALLBACK or SSA_LINK;
 {$ENDIF}
 var
-  tm: TTextMetricA;
+  tm: TTextMetric;
   {$IFDEF SYN_UNISCRIBE}
   GlyphBufferSize: Integer;
   saa: TScriptStringAnalysis;
@@ -2532,7 +2544,7 @@ begin
         Result := lpSize^;
         if Result.cx = 0 then
         begin
-          GetTextMetricsA(DC, tm);
+          GetTextMetrics(DC, tm);
           Result.cx := tm.tmAveCharWidth;
         end;
       end;
@@ -2545,7 +2557,7 @@ begin
     GetTextExtentPoint32W(DC, Str, Count, Result);
     if not Win32PlatformIsUnicode then
     begin
-      GetTextMetricsA(DC, tm);
+      GetTextMetrics(DC, tm);
       if tm.tmPitchAndFamily and TMPF_TRUETYPE <> 0 then
         Result.cx := Result.cx - tm.tmOverhang
       else
@@ -2880,7 +2892,7 @@ begin
   begin
     SetLength(Buffer, BufferSize);
     Stream.ReadBuffer(Buffer[0], BufferSize);
-    Stream.Seek(-BufferSize, soFromCurrent);
+    Stream.Seek(-BufferSize, soCurrent);
 
     { first search for BOM }
 
@@ -3009,7 +3021,7 @@ begin
   if Size >= 2 then
   begin
     Stream.ReadBuffer(BOM, sizeof(BOM));
-    Stream.Seek(-sizeof(BOM), soFromCurrent);
+    Stream.Seek(-sizeof(BOM), soCurrent);
     if BOM = WideChar(UTF16BOMLE) then
     begin
       Result := seUTF16LE;

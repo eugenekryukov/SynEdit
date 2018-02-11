@@ -1,3 +1,6 @@
+{ Enable CrossVcl }
+{$DEFINE SYN_CROSSVCL}
+
 (******************************************************************************)
 (* SynEdit Include File.  This file was adapted from Brad Stowers' DFS.INC    *)
 (* file and used with permission.  This will help reduce headaches when new   *)
@@ -155,11 +158,21 @@
 {$ENDIF}
 
 {$IFDEF LINUX}
-  {$DEFINE SYN_LINUX}
-  {$DEFINE SYN_KYLIX}
-  {$DEFINE SYN_COMPILER_6}
-  {$DEFINE SYN_DELPHI}
-  {$DEFINE SYN_DELPHI_6}
+  {$IFDEF SYN_CROSSVCL}
+    {$DEFINE SYN_WIN32}
+  {$ELSE}
+    {$DEFINE SYN_LINUX}
+    {$DEFINE SYN_KYLIX}
+    {$DEFINE SYN_COMPILER_6}
+    {$DEFINE SYN_DELPHI}
+    {$DEFINE SYN_DELPHI_6}
+  {$ENDIF}
+{$ENDIF}
+
+{$IFDEF MACOS}
+  {$IFDEF SYN_CROSSVCL}
+    {$DEFINE SYN_WIN32}
+  {$ENDIF}
 {$ENDIF}
 
 {------------------------------------------------------------------------------}
@@ -1142,7 +1155,9 @@
 
 // DirectWrite
 {$IFDEF SYN_DELPHI_XE2_UP}
-  {$DEFINE SYN_DirectWrite}
+  {$IFNDEF SYN_CROSSVCL}
+    {$DEFINE SYN_DirectWrite}
+  {$ENDIF}
 {$ENDIF}
 
 // Code Folding

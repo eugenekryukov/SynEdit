@@ -1,4 +1,4 @@
-{-------------------------------------------------------------------------------
+﻿{-------------------------------------------------------------------------------
 The contents of this file are subject to the Mozilla Public License
 Version 1.1 (the "License"); you may not use this file except in compliance
 with the License. You may obtain a copy of the License at
@@ -282,7 +282,9 @@ implementation
 uses
   SynEditMiscProcs,
 {$IFDEF UNICODE}
+  {$IFNDEF SYN_CROSSVCL}
   WideStrUtils,
+  {$ENDIF}
 {$ENDIF}
 {$IFDEF SYN_CLX}
   QSynEditStrConst;
@@ -1036,7 +1038,7 @@ begin
   Len := FExpandedRun - FExpandedTokenPos;
   SetLength(Result, Len);
   if Len > 0 then
-    WStrLCopy(@Result[1], FExpandedLine + FExpandedTokenPos, Len);
+    StrLCopy(@Result[1], FExpandedLine + FExpandedTokenPos, Len);
 end;
 
 class function TSynCustomHighlighter.GetFriendlyLanguageName: UnicodeString;
@@ -1077,7 +1079,7 @@ begin
   Len := Run - FTokenPos;
   SetLength(Result, Len);
   if Len > 0 then
-    WStrLCopy(@Result[1], FCasedLine + FTokenPos, Len);
+    StrLCopy(@Result[1], FCasedLine + FTokenPos, Len);
 end;
 
 function TSynCustomHighlighter.GetTokenPos: Integer;

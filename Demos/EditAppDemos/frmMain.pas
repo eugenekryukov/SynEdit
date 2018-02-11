@@ -42,7 +42,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  Menus, ActnList, uEditAppIntfs, ComCtrls;
+  Menus, ActnList, uEditAppIntfs, ComCtrls, System.Actions;
 
 type
   TMainForm = class(TForm)

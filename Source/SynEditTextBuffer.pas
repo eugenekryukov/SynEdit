@@ -76,7 +76,7 @@ type
     {$ELSE}
     FString: UnicodeString;
     {$ENDIF OWN_UnicodeString_MEMMGR}
-    FObject: TObject;
+    [unsafe] FObject: TObject;
     FRange: TSynEditRange;
     FExpandedLength: Integer;
     fCharIndex : Integer;
@@ -866,7 +866,7 @@ begin
     TmpStringList.Text := NewText;
     InsertStrings(Index, TmpStringList);
   finally
-    TmpStringList.Free;
+    TmpStringList.DisposeOf;
   end;
 end;
 
@@ -1159,7 +1159,7 @@ end;
 destructor TSynEditUndoList.Destroy;
 begin
   Clear;
-  FItems.Free;
+  FItems.DisposeOf;
   inherited Destroy;
 end;
 
@@ -1216,7 +1216,7 @@ begin
       end;
       PushItem(NewItem);
     except
-      NewItem.Free;
+      NewItem.DisposeOf;
       raise;
     end;
   end;
@@ -1233,7 +1233,7 @@ var
   i: Integer;
 begin
   for i := 0 to FItems.Count - 1 do
-    TSynEditUndoItem(FItems[i]).Free;
+    TSynEditUndoItem(FItems[i]).DisposeOf;
   FItems.Clear;
   FFullUndoImposible := False;
 end;
@@ -1268,7 +1268,7 @@ begin
     FFullUndoImposible := True;
     while FItems.Count > FMaxUndoActions do begin
       Item := FItems[0];
-      Item.Free;
+      Item.DisposeOf;
       FItems.Delete(0);
     end;
   end;
@@ -1313,7 +1313,11 @@ end;
 
 procedure TSynEditUndoList.PushItem(Item: TSynEditUndoItem);
 begin
-  if Assigned(Item) then begin
+  if Assigned(Item) then
+  begin
+    {$IFDEF NEXTGEN}
+    Item.__ObjAddRef;
+    {$ENDIF}
     FItems.Add(Item);
     EnsureMaxEntries;
     if (Item.ChangeReason <> crGroupBreak) and Assigned(OnAddedUndo) then
@@ -1397,7 +1401,7 @@ end;
 
 procedure TSynEditUndoList.DeleteItem(AIndex: Integer);
 begin
-  TSynEditUndoItem(FItems[AIndex]).Free;
+  TSynEditUndoItem(FItems[AIndex]).DisposeOf;
   FItems.Delete(AIndex);
 end;
 

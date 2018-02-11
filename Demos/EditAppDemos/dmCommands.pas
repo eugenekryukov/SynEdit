@@ -43,7 +43,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ActnList, SynHighlighterSQL, SynHighlighterPas, SynEditHighlighter,
-  SynHighlighterCpp;
+  SynHighlighterCpp, SynEditCodeFolding, System.Actions;
 
 type
   TCommandsDataModule = class(TDataModule)

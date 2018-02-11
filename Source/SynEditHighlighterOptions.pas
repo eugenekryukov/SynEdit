@@ -33,7 +33,7 @@ unit SynEditHighlighterOptions;
 interface
 
 uses
-  Classes;
+  Windows, Classes;
 
 type
   TSynEditHighlighterOptions = class(TPersistent)

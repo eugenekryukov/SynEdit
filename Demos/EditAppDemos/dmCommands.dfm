@@ -2,8 +2,6 @@ object CommandsDataModule: TCommandsDataModule
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Left = 108
-  Top = 115
   Height = 276
   Width = 420
   object dlgFileOpen: TOpenDialog
@@ -134,6 +132,9 @@ object CommandsDataModule: TCommandsDataModule
   end
   object SynCppSyn1: TSynCppSyn
     DefaultFilter = 'C++ files (*.cpp,*.h,*.hpp)|*.cpp;*.h;*.hpp'
+    Options.AutoDetectEnabled = False
+    Options.AutoDetectLineLimit = 0
+    Options.Visible = False
     CommentAttri.Foreground = clGreen
     DirecAttri.Foreground = clMaroon
     IdentifierAttri.Foreground = clNavy
@@ -144,6 +145,9 @@ object CommandsDataModule: TCommandsDataModule
     Top = 12
   end
   object SynPasSyn1: TSynPasSyn
+    Options.AutoDetectEnabled = False
+    Options.AutoDetectLineLimit = 0
+    Options.Visible = False
     CommentAttri.Foreground = clGreen
     IdentifierAttri.Foreground = clNavy
     NumberAttri.Foreground = clBlue
@@ -153,6 +157,9 @@ object CommandsDataModule: TCommandsDataModule
   end
   object SynSQLSyn1: TSynSQLSyn
     DefaultFilter = 'SQL files (*.sql)|*.sql'
+    Options.AutoDetectEnabled = False
+    Options.AutoDetectLineLimit = 0
+    Options.Visible = False
     CommentAttri.Foreground = clGreen
     IdentifierAttri.Foreground = clNavy
     NumberAttri.Foreground = clBlue

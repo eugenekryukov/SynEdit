@@ -185,11 +185,14 @@ begin
   FKeyLen := Length(AKey);
   FKeyword := AKey;
   fKind := AKind;
+  {$IFDEF NEXTGEN}
+  __ObjAddRef;
+  {$ENDIF}
 end;
 
 destructor TSynHashEntry.Destroy;
 begin
-  FNext.Free;
+  FNext.DisposeOf;
   inherited Destroy;
 end;
 
@@ -198,7 +201,7 @@ begin
   Result := Self;
   if Assigned(NewEntry) then
   begin
-    if WideCompareText(NewEntry.Keyword, FKeyword) = 0 then
+    if CompareText(NewEntry.Keyword, FKeyword) = 0 then
       raise Exception.CreateFmt('Keyword "%s" already in list', [FKeyword]);
     if NewEntry.FKeyLen < FKeyLen then
     begin
@@ -228,7 +231,7 @@ var
   i: Integer;
 begin
   for i := 0 to Count - 1 do
-    TSynHashEntry(Items[i]).Free;
+    TSynHashEntry(Items[i]).DisposeOf;
   inherited Clear;
 end;
 
