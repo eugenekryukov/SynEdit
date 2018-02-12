@@ -78,20 +78,18 @@ object Form1: TForm1
       'douglas@adams.lod'
       'news:comp.lang.pascal.borland')
     FontSmoothing = fsmNone
-    ExplicitWidth = 688
-    ExplicitHeight = 457
   end
   object SynURIOpener1: TSynURIOpener
     Editor = SynEdit1
     URIHighlighter = SynURISyn1
-    Left = 632
-    Top = 40
+    Left = 610
+    Top = 82
   end
   object SynURISyn1: TSynURISyn
     Options.AutoDetectEnabled = False
     Options.AutoDetectLineLimit = 0
     Options.Visible = False
-    Left = 632
-    Top = 8
+    Left = 612
+    Top = 20
   end
 end

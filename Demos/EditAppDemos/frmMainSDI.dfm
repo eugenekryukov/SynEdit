@@ -1,16 +1,16 @@
 inherited SDIMainForm: TSDIMainForm
   Caption = 'Single Document Edit Demo'
-  ClientHeight = 482
-  ClientWidth = 730
+  ClientHeight = 478
+  ClientWidth = 746
   OldCreateOrder = True
   OnCloseQuery = FormCloseQuery
-  ExplicitWidth = 746
-  ExplicitHeight = 541
+  ExplicitWidth = 762
+  ExplicitHeight = 537
   PixelsPerInch = 96
   TextHeight = 13
   inherited StatusBar: TStatusBar
-    Top = 463
-    Width = 730
+    Top = 459
+    Width = 746
     ExplicitTop = 463
     ExplicitWidth = 730
   end
