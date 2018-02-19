@@ -88,10 +88,9 @@ implementation
 
 uses
 {$IFDEF SYN_COMPILER_18_UP}
+  {$IFNDEF NEXTGEN}
   AnsiStrings,
-{$ENDIF}
-{$IFDEF UNICODE}
-  WideStrUtils,
+  {$ENDIF}
 {$ENDIF}
 {$IFDEF SYN_CLX}
   QSynUnicode,
@@ -149,10 +148,7 @@ procedure TSynMemo.EMGetSelText(var Message: TMessage);
 begin
   if Message.lParam <> 0 then
   begin
-    if IsWindowUnicode(Handle) then
-      WStrLCopy(PWideChar(Message.lParam), PWideChar(SelText), Length(SelText))
-    else
-      {$IFDEF SYN_COMPILER_18_UP}AnsiStrings.{$ENDIF}StrLCopy(PAnsiChar(Message.lParam), PAnsiChar(AnsiString(SelText)), Length(SelText));
+    StrLCopy(PWideChar(Message.lParam), PWideChar(SelText), Length(SelText));
     Message.Result := Length(SelText);
   end;                          
 end;
@@ -209,20 +205,10 @@ var
 begin
   if {$IFNDEF SYN_COMPILER_16_UP}(Message.WParam >= 0) and {$ENDIF}(Integer(Message.WParam) < Lines.Count) then
   begin
-    if IsWindowUnicode(Handle) then
-    begin
-      DestWide := PWideChar(Message.LParam);
-      SourceWide := PWideChar(Lines[Message.WParam]);
-      WStrLCopy(DestWide, SourceWide, PWord(Message.LParam)^);
-      Message.Result := WStrLen(DestWide);
-    end
-    else
-    begin
-      DestAnsi := PAnsiChar(Message.LParam);
-      SourceAnsi := PAnsiChar(AnsiString(Lines[Message.WParam]));
-      {$IFDEF SYN_COMPILER_18_UP}AnsiStrings.{$ENDIF}StrLCopy(DestAnsi, SourceAnsi, PWord(Message.LParam)^);
-      Message.Result := {$IFDEF SYN_COMPILER_18_UP}AnsiStrings.{$ENDIF}StrLen(DestAnsi);
-    end
+    DestWide := PWideChar(Message.LParam);
+    SourceWide := PWideChar(Lines[Message.WParam]);
+    StrLCopy(DestWide, SourceWide, PWord(Message.LParam)^);
+    Message.Result := StrLen(DestWide);
   end
   else
     Message.Result := 0;
