@@ -1675,6 +1675,10 @@ begin
         ExStyle := ExStyle or WS_EX_COMPOSITED;
     end;
 
+    {$IFNDEF MSWINDOWS}
+    ExStyle := ExStyle or WS_EX_SCROLLING;
+    {$ENDIF}
+
 {$IFNDEF UNICODE}
     if not (csDesigning in ComponentState) then
     begin
